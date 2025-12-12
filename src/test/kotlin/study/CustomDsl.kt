@@ -1,14 +1,15 @@
-package dsl
+package study
 
 fun introduce(block: PersonBuilder.() -> Unit): Person {
     return PersonBuilder().apply(block).build()
 }
 
+class Person(val name: String, val company: String?, val skills: Skills?, val languages: Languages?)
 class PersonBuilder {
     private lateinit var name: String
     private var company: String? = null
     private var skills: Skills? = null
-    private var languages: List<Language>? = null
+    private var languages: Languages? = null
 
     fun name(value: String) {
         name = value
@@ -31,8 +32,8 @@ class PersonBuilder {
     }
 }
 
-data class Person(val name: String, val company: String?, val skills: Skills?, val languages: List<Language>?)
 
+class Skills(val softSkills: List<String>, val hardSkills: List<String>)
 class SkillBuilder {
     private var softSkills: List<String> = listOf()
     private var hardSkills: List<String> = listOf()
@@ -50,21 +51,17 @@ class SkillBuilder {
     }
 }
 
-class Skills(val softSkills: List<String>, val hardSkills: List<String>)
-data class Language(val name: String, val level: Int)
 
+class Languages(val languages: List<Pair<String, Int>>)
 class LanguageBuilder {
-    private var languages: List<Language> = listOf()
+    private var languages: List<Pair<String, Int>> = listOf()
 
-    fun level(name : String, level : Int) : Language {
-        return Language(name, level)
+    infix fun String.level(other: Int) {
+        val newPair = this to other
+        languages += (newPair)
     }
 
-    fun add(language : Language) {
-        languages += language
-    }
-
-    fun build(): List<Language> {
-        return languages
+    fun build(): Languages {
+        return Languages(languages)
     }
 }

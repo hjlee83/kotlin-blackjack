@@ -1,6 +1,5 @@
 package study
 
-import dsl.introduce
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
@@ -41,8 +40,8 @@ class DslTest : FreeSpec({
                     hard("Kotlin")
                 }
                 languages {
-                    level("Korean", 5)
-                    level("English", 3)
+                    "Korean" level 5
+                    "English" level 3
                 }
             }
 
@@ -50,40 +49,7 @@ class DslTest : FreeSpec({
             person.name shouldBe "이호진"
             person.skills?.softSkills?.size shouldBe 2
             person.skills?.hardSkills?.size shouldBe 1
-            person.languages?.size shouldBe 2
-
+            person.languages?.languages?.size shouldBe 2
         }
     }
-//    introduce {
-//        name("박재성")
-//        company("우아한형제들")
-//        skills {
-//            soft("A passion for problem solving")
-//            soft("Good communication skills")
-//            hard("Kotlin")
-//        }
-//        languages {
-//            "Korean" level 5
-//            "English" level 3
-//        }
-//    }
-//    @ValueSource(strings = ["박재성", "제이슨"])
-//    @ParameterizedTest
-//    fun introduce(value: String) {
-//        val person = introduce {
-//            name(value)
-//        }
-//        assertThat(person.name).isEqualTo(value)
-//    }
-//
-//    @Test
-//    fun company() {
-//        val person = introduce {
-//            name("박재성")
-//            company("우아한형제들")
-//        }
-//        assertThat(person.name).isEqualTo("박재성")
-//        assertThat(person.company).isEqualTo("우아한형제들")
-//    }
-
 })
