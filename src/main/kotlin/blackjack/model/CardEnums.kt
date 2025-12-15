@@ -8,7 +8,7 @@ class CardEnums {
         SPADE("스페이드"),
     }
 
-    enum class Rank(private val score: Int) {
+    enum class Rank(val score: Int) {
         ACE(1),
         TWO(2),
         THREE(3),
