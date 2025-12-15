@@ -3,33 +3,31 @@ package blackjack
 import blackjack.domain.Dealer
 import blackjack.domain.Deck
 import blackjack.domain.Player
-import blackjack.domain.RecordType
+import blackjack.domain.Result
 import blackjack.view.InputView
 import blackjack.view.OutputView
 
 fun main() {
     val deck = Deck()
     val dealer = Dealer()
-    val players = players()
+    val players = createPlayers()
 
-    init(deck, players, dealer)
+    initialDeal(deck, players, dealer)
     additionalDeal(deck, players, dealer)
-    result(players, dealer)
+    showResult(players, dealer)
 }
 
-private fun players(): List<Player> {
-    val playerNames = InputView.playerNames()
-    return playerNames.map { Player(it) }
-}
+private fun createPlayers(): List<Player> = InputView.playerNames().map { Player(it) }
 
-private fun init(
+private fun initialDeal(
     deck: Deck,
     players: List<Player>,
     dealer: Dealer,
 ) {
     OutputView.initialDeal(players.map { it.name })
 
-    (players + dealer).forEach { participant ->
+    val participants = players + dealer
+    participants.forEach { participant ->
         repeat(2) {
             participant.addCard(deck.pop())
         }
@@ -44,30 +42,37 @@ private fun additionalDeal(
     players: List<Player>,
     dealer: Dealer,
 ) {
-    players.forEach {
-        while (InputView.decideDealCard(it)) {
-            it.addCard(deck.pop())
-            OutputView.cardList(it)
+    dealToPlayers(deck, players)
+    dealToDealer(deck, dealer)
+}
+
+private fun dealToPlayers(
+    deck: Deck,
+    players: List<Player>,
+) {
+    players.forEach { player ->
+        while (InputView.decideDealCard(player)) {
+            player.addCard(deck.pop())
+            OutputView.cardList(player)
         }
     }
+}
 
+private fun dealToDealer(
+    deck: Deck,
+    dealer: Dealer,
+) {
     if (dealer.isAdditionalDealCondition()) {
         OutputView.dealerAdditionalCondition()
         dealer.addCard(deck.pop())
     }
 }
 
-private fun result(
+private fun showResult(
     players: List<Player>,
     dealer: Dealer,
 ) {
-    (players + dealer).forEach { OutputView.scoreResult(it) }
-
-    val matchResults: Map<String, RecordType> =
-        players.associateBy({ player -> player.name }, { player -> player.match(dealer) })
-    val dealerRecords = matchResults.values.map { it.reverse() }
-
-    OutputView.winOrLoseTitle()
-    OutputView.playersRecords(matchResults)
-    OutputView.dealerRecords(dealerRecords)
+    val participants = players + dealer
+    OutputView.scoreResult(participants)
+    OutputView.winOrLose(Result(dealer, players))
 }
