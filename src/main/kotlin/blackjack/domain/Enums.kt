@@ -1,18 +1,13 @@
 package blackjack.domain
 
-enum class Suit(
-    val displayName: String,
-) {
+enum class Suit(val displayName: String) {
     CLUB("클로버"),
     DIAMOND("다이아몬드"),
     HEART("하트"),
     SPADE("스페이드"),
 }
 
-enum class Rank(
-    val displayName: String,
-    val score: Int,
-) {
+enum class Rank(val displayName: String, val score: Int) {
     ACE("A", 1),
     TWO("2", 2),
     THREE("3", 3),
@@ -28,9 +23,7 @@ enum class Rank(
     KING("K", 10),
 }
 
-enum class RecordType(
-    val displayName: String,
-) {
+enum class RecordType(val displayName: String) {
     WIN("승"),
     DRAW("무"),
     LOSE("패"),
