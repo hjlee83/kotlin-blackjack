@@ -20,12 +20,14 @@ object InputView {
 
     fun decideDealCard(player: Player): Boolean {
         println("${player.name}는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)")
-        val decider = readlnOrNull()
+        return InputUtils.retryInput {
+            val decider = readlnOrNull()
 
-        require(decider != null && (decider == "y" || decider == "n")) {
-            "올바른 값을 입력해주세요."
+            require(decider != null && (decider == "y" || decider == "n")) {
+                "올바른 값을 입력해주세요."
+            }
+
+            decider == "y"
         }
-
-        return decider == "y"
     }
 }
