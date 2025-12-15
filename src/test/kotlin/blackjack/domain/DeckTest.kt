@@ -1,4 +1,4 @@
-package blackjack.model
+package blackjack.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldHaveSize
@@ -19,6 +19,15 @@ class DeckTest : BehaviorSpec({
             Then("한장을 꺼내오고 덱에서 그 카드를 제거한다.") {
                 deck.cards shouldNotContain card
                 deck.cards shouldHaveSize 51
+            }
+        }
+
+        When("pop을 2번 했을 때") {
+            val card = deck.pop()
+
+            Then("2장을 꺼내오고 덱에서 그 카드 2장을 제거한다.") {
+                deck.cards shouldNotContain card
+                deck.cards shouldHaveSize 50
             }
         }
     }

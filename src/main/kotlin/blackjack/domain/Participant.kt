@@ -1,4 +1,4 @@
-package blackjack.model
+package blackjack.domain
 
 abstract class Participant(val name: String) {
     private val _cards = mutableSetOf<Card>()
@@ -11,22 +11,19 @@ abstract class Participant(val name: String) {
     }
 
     fun totalScore(): Int {
-        // ACE를 1로 했을때의 점수
-        var sum = cards.sumOf { it.rank.score }
+        var totalScore = cards.sumOf { it.rank.score }
 
         val aceCount =
             cards.count {
-                it.rank == CardEnums.Rank.ACE
+                it.rank == Rank.ACE
             }
 
-        (1..aceCount).forEach { _ ->
-            if (sum + 10 > 21) {
-                return sum
-            } else {
-                sum += 10
+        repeat(aceCount) {
+            if (totalScore + ACE_ADDITIONAL_SCORE <= BLACKJACK_SCORE) {
+                totalScore += ACE_ADDITIONAL_SCORE
             }
         }
 
-        return sum
+        return totalScore
     }
 }

@@ -1,4 +1,4 @@
-package blackjack.model
+package blackjack.domain
 
 class Deck {
     private val _cards = mutableSetOf<Card>()
@@ -7,11 +7,13 @@ class Deck {
         get() = _cards
 
     init {
-        CardEnums.Suit.entries.flatMap { suit ->
-            CardEnums.Rank.entries.map { rank ->
-                Card(suit, rank)
-            }
-        }.shuffled().toCollection(_cards)
+        Suit.entries
+            .flatMap { suit ->
+                Rank.entries.map { rank ->
+                    Card(suit, rank)
+                }
+            }.shuffled()
+            .toCollection(_cards)
     }
 
     fun pop(): Card = _cards.pop()

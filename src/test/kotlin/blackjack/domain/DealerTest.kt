@@ -1,4 +1,4 @@
-package blackjack.model
+package blackjack.domain
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -12,22 +12,21 @@ class DealerTest : BehaviorSpec({
         }
 
         When("두장의 카드값이 합이 16이하면") {
-            dealer.addCard(Card(CardEnums.Suit.DIAMOND, CardEnums.Rank.ACE))
-            dealer.addCard(Card(CardEnums.Suit.SPADE, CardEnums.Rank.ACE))
+            dealer.addCard(Card(Suit.DIAMOND, Rank.ACE))
+            dealer.addCard(Card(Suit.SPADE, Rank.ACE))
 
-            Then(" True") {
+            Then("카드 추가 획득") {
                 dealer.isAdditionalDealCondition() shouldBe true
             }
         }
 
-        When("두장의 카드값이 합이 16이상이면") {
-            dealer.addCard(Card(CardEnums.Suit.DIAMOND, CardEnums.Rank.JACK))
-            dealer.addCard(Card(CardEnums.Suit.SPADE, CardEnums.Rank.JACK))
+        When("두장의 카드값이 합이 16초과이면") {
+            dealer.addCard(Card(Suit.DIAMOND, Rank.JACK))
+            dealer.addCard(Card(Suit.SPADE, Rank.JACK))
 
-            Then(" False") {
+            Then("카드 추가 획득 X") {
                 dealer.isAdditionalDealCondition() shouldBe false
             }
         }
     }
-
 })
