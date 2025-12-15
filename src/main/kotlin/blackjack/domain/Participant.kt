@@ -11,16 +11,19 @@ abstract class Participant(val name: String) {
     }
 
     fun totalScore(): Int {
-        var totalScore = cards.sumOf { it.score() }
-
+        var score = cards.sumOf { it.score() }
         val aceCount = cards.count { it.isAce() }
 
         repeat(aceCount) {
-            if (totalScore + ACE_ADDITIONAL_SCORE <= BLACKJACK_SCORE) {
-                totalScore += ACE_ADDITIONAL_SCORE
+            if (score + ACE_ADDITIONAL_SCORE <= BLACKJACK_SCORE) {
+                score += ACE_ADDITIONAL_SCORE
             }
         }
 
-        return totalScore
+        return score
+    }
+
+    companion object {
+        const val ACE_ADDITIONAL_SCORE = 10
     }
 }
