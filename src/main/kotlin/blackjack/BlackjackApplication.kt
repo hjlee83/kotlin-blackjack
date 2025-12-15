@@ -4,7 +4,6 @@ import blackjack.domain.Dealer
 import blackjack.domain.Deck
 import blackjack.domain.Player
 import blackjack.domain.RecordType
-import blackjack.util.InputUtils
 import blackjack.view.InputView
 import blackjack.view.OutputView
 
@@ -19,7 +18,7 @@ fun main() {
 }
 
 private fun players(): List<Player> {
-    val playerNames = InputUtils.retryInput { InputView.playerNames() }
+    val playerNames = InputView.playerNames()
     val players = playerNames.map { Player(it) }
     return players
 }
