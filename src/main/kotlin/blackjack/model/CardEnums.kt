@@ -1,14 +1,14 @@
 package blackjack.model
 
 class CardEnums {
-    enum class Suit(private val korean: String) {
+    enum class Suit(val korean: String) {
         CLUB("클로버"),
         DIAMOND("다이아몬드"),
         HEART("하트"),
         SPADE("스페이드"),
     }
 
-    enum class Rank(private val displayName: String, val score: Int) {
+    enum class Rank(val displayName: String, val score: Int) {
         ACE("A", 1),
         TWO("2", 2),
         THREE("3", 3),

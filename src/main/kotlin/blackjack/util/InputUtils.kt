@@ -5,8 +5,8 @@ object InputUtils {
         while (true) {
             try {
                 return prompt()
-            } catch (_: Exception) {
-                println("다시 입력해주세요.")
+            } catch (e: Exception) {
+                println(e.message)
             }
         }
     }
