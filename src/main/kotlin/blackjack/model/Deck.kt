@@ -22,5 +22,3 @@ class Deck {
         return firstCard
     }
 }
-
-

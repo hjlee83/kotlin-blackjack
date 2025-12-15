@@ -6,6 +6,3 @@ import blackjack.view.InputView
 fun main() {
     val playerNames = InputUtils.retryInput { InputView().readPlayerNames() }
 }
-
-
-

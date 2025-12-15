@@ -9,6 +9,5 @@ object InputUtils {
                 println("다시 입력해주세요.")
             }
         }
-
     }
 }

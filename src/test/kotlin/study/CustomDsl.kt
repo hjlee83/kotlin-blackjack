@@ -5,6 +5,7 @@ fun introduce(block: PersonBuilder.() -> Unit): Person {
 }
 
 class Person(val name: String, val company: String?, val skills: Skills?, val languages: Languages?)
+
 class PersonBuilder {
     private lateinit var name: String
     private var company: String? = null
@@ -32,8 +33,8 @@ class PersonBuilder {
     }
 }
 
-
 class Skills(val softSkills: List<String>, val hardSkills: List<String>)
+
 class SkillBuilder {
     private var softSkills: List<String> = listOf()
     private var hardSkills: List<String> = listOf()
@@ -51,8 +52,8 @@ class SkillBuilder {
     }
 }
 
-
 class Languages(val languages: List<Pair<String, Int>>)
+
 class LanguageBuilder {
     private var languages: List<Pair<String, Int>> = listOf()
 

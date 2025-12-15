@@ -18,7 +18,7 @@ class DeckTest : BehaviorSpec({
 
             Then("한장을 꺼내오고 덱에서 그 카드를 제거한다.") {
                 deck.cards shouldNotContain card
-                deck.cards shouldHaveSize  51
+                deck.cards shouldHaveSize 51
             }
         }
     }
