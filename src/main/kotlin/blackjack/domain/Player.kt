@@ -1,9 +1,5 @@
 package blackjack.domain
 
-import blackjack.domain.RecordType.DRAW
-import blackjack.domain.RecordType.LOSE
-import blackjack.domain.RecordType.WIN
-
 class Player(
     name: String,
 ) : Participant(name) {
@@ -12,18 +8,18 @@ class Player(
         val dealerScore = dealer.totalScore()
 
         return when {
-            playerScore > BLACKJACK_SCORE -> LOSE
-            dealerScore > BLACKJACK_SCORE -> WIN
-            playerScore > dealerScore -> WIN
-            playerScore < dealerScore -> LOSE
+            playerScore > BLACKJACK_SCORE -> RecordType.LOSE
+            dealerScore > BLACKJACK_SCORE -> RecordType.WIN
+            playerScore > dealerScore -> RecordType.WIN
+            playerScore < dealerScore -> RecordType.LOSE
             else -> compareCardCount(dealer)
         }
     }
 
     private fun compareCardCount(dealer: Dealer): RecordType =
         when {
-            cards.size < dealer.cards.size -> WIN
-            cards.size > dealer.cards.size -> LOSE
-            else -> DRAW
+            cardCount() < dealer.cardCount() -> RecordType.WIN
+            cardCount() > dealer.cardCount() -> RecordType.LOSE
+            else -> RecordType.DRAW
         }
 }

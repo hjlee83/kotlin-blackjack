@@ -6,7 +6,7 @@ abstract class Participant(val name: String) {
     val cards: Set<Card>
         get() = _cards
 
-    fun addCard(card: Card) {
+    open fun addCard(card: Card) {
         _cards.add(card)
     }
 
@@ -22,6 +22,8 @@ abstract class Participant(val name: String) {
 
         return score
     }
+
+    fun cardCount() = cards.size
 
     companion object {
         const val ACE_ADDITIONAL_SCORE = 10
