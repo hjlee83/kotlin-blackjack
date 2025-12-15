@@ -7,9 +7,8 @@ class InputView {
             readlnOrNull()
                 ?.split(",")
                 ?.map { it.trim() }
-                ?.filter { it.isNotBlank() }
 
-        require(playerNames != null && playerNames.isNotEmpty()) { "올바른 참가자 이름을 입력해주세요." }
+        require(playerNames != null && playerNames.isNotEmpty() && playerNames.all { it.isNotBlank() }) { "올바른 참가자 이름을 입력해주세요." }
         return playerNames
     }
 }
