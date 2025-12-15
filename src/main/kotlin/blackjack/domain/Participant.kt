@@ -11,12 +11,9 @@ abstract class Participant(val name: String) {
     }
 
     fun totalScore(): Int {
-        var totalScore = cards.sumOf { it.rank.score }
+        var totalScore = cards.sumOf { it.score() }
 
-        val aceCount =
-            cards.count {
-                it.rank == Rank.ACE
-            }
+        val aceCount = cards.count { it.isAce() }
 
         repeat(aceCount) {
             if (totalScore + ACE_ADDITIONAL_SCORE <= BLACKJACK_SCORE) {

@@ -28,7 +28,7 @@ class DeckTest :
                 val cards = mutableListOf<Card>()
                 repeat(52) { cards.add(deck.pop()) }
                 Then("모든 카드는 고유한 조합을 가지며 중복이 없다.") {
-                    val uniqueCards = cards.map { Pair(it.suit, it.rank) }.toSet()
+                    val uniqueCards = cards.map { it.toString() }.toSet()
                     uniqueCards.size shouldBe 52
                 }
             }

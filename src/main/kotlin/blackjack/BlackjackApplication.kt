@@ -19,8 +19,7 @@ fun main() {
 
 private fun players(): List<Player> {
     val playerNames = InputView.playerNames()
-    val players = playerNames.map { Player(it) }
-    return players
+    return playerNames.map { Player(it) }
 }
 
 private fun init(
