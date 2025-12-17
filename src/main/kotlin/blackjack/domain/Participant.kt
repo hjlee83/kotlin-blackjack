@@ -4,7 +4,7 @@ abstract class Participant(val name: String) {
     private val _cards = mutableSetOf<Card>()
 
     val cards: Set<Card>
-        get() = _cards
+        get() = _cards.toSet()
 
     open fun addCard(card: Card) {
         _cards.add(card)
