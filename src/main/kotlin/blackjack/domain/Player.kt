@@ -11,8 +11,8 @@ class Player(
     }
 
     private fun getResult(dealer: Dealer): RecordType {
-        val playerScore = totalScore()
-        val dealerScore = dealer.totalScore()
+        val playerScore = score()
+        val dealerScore = dealer.score()
 
         return when {
             isBlackjack() && dealer.isBlackjack() -> RecordType.DRAW // 둘다 블랙잭인경우 비김

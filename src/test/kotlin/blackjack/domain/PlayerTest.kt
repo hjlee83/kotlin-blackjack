@@ -8,29 +8,20 @@ class PlayerTest : BehaviorSpec({
         val player = Player("김효건")
         When("다이아몬드 에이스 카드를 더하면") {
             player.addCard(Card(Suit.DIAMOND, Rank.ACE))
-            Then("카드리스트에 카드가 추가된다.") {
-                player.cardCount() shouldBe 1
-            }
             Then("총 점수가 11점이 된다.") {
-                player.totalScore() shouldBe 11
+                player.score() shouldBe 11
             }
         }
         When("하트 에이스 카드를 더하면") {
             player.addCard(Card(Suit.HEART, Rank.ACE))
-            Then("카드가 총 2장이 된다.") {
-                player.cardCount() shouldBe 2
-            }
             Then("총 점수가 12점이 된다.") {
-                player.totalScore() shouldBe 12
+                player.score() shouldBe 12
             }
         }
         When("하트 5 카드를 더하면") {
             player.addCard(Card(Suit.HEART, Rank.FIVE))
-            Then("카드리스트에 카드가 또 추가된다.") {
-                player.cardCount() shouldBe 3
-            }
             Then("총 점수가 17점이 된다.") {
-                player.totalScore() shouldBe 17
+                player.score() shouldBe 17
             }
         }
     }

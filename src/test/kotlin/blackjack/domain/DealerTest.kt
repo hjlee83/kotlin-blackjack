@@ -48,7 +48,7 @@ class DealerTest : BehaviorSpec({
             dealer.addCard(Card(Suit.HEART, Rank.THREE))
 
             Then("카드가 정상적으로 추가된다.") {
-                dealer.cardCount() shouldBe 3
+                dealer.score() shouldBe 16
             }
         }
     }

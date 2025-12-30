@@ -1,7 +1,7 @@
 package blackjack.domain
 
 class Dealer : Participant(NAME) {
-    fun isAdditionalDealCondition(): Boolean = totalScore() <= ADD_CARD_BASE_SCORE
+    fun isAdditionalDealCondition(): Boolean = score() <= ADD_CARD_BASE_SCORE
 
     companion object {
         const val NAME = "딜러"
