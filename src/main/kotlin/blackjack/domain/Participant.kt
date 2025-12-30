@@ -6,7 +6,7 @@ abstract class Participant(val name: String) {
     val cards: Set<Card>
         get() = _cards.toSet()
 
-    open fun addCard(card: Card) {
+    fun addCard(card: Card) {
         _cards.add(card)
     }
 
@@ -24,6 +24,10 @@ abstract class Participant(val name: String) {
     }
 
     fun cardCount() = cards.size
+
+    fun isBust(): Boolean = totalScore() > BLACKJACK_SCORE
+
+    fun isBlackjack(): Boolean = cardCount() == BLACKJACK_CARD_COUNT && totalScore() == BLACKJACK_SCORE
 
     companion object {
         const val ACE_ADDITIONAL_SCORE = 10

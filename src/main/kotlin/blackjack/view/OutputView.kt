@@ -1,9 +1,9 @@
 package blackjack.view
 
 import blackjack.domain.Dealer
-import blackjack.domain.DealerWinDrawLose
+import blackjack.domain.DealerProfit
 import blackjack.domain.Participant
-import blackjack.domain.PlayerRecord
+import blackjack.domain.PlayerProfit
 import blackjack.domain.Result
 
 object OutputView {
@@ -24,17 +24,13 @@ object OutputView {
     private fun createCardListMessage(participant: Participant) =
         "${participant.name}카드: ${participant.cards.joinToString(", ") { it.toString() }}"
 
-    fun winOrLose(result: Result) {
-        println("## 최종 승패")
-        playersRecords(result.playerRecords)
-        dealerRecords(result.dealerRecord)
+    fun finalProfit(result: Result) {
+        println("## 최종 수익")
+        dealerProfit(result.dealerProfit)
+        playersProfit(result.playerProfits)
     }
 
-    private fun playersRecords(playerRecords: List<PlayerRecord>) {
-        playerRecords.forEach { println("${it.name} : ${it.recordType.displayName}") }
-    }
+    private fun playersProfit(playerProfits: List<PlayerProfit>) = playerProfits.forEach { println("${it.name} : ${it.profit}") }
 
-    private fun dealerRecords(dealerWinDrawLose: DealerWinDrawLose) {
-        println("딜러 : ${dealerWinDrawLose.winCount}승 ${dealerWinDrawLose.drawCount}무 ${dealerWinDrawLose.loseCount}패")
-    }
+    private fun dealerProfit(dealerProfit: DealerProfit) = println("딜러 : ${dealerProfit.profit}")
 }
