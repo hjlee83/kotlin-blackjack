@@ -1,9 +1,7 @@
 package blackjack.view
 
 import blackjack.domain.Dealer
-import blackjack.domain.DealerProfit
 import blackjack.domain.Participant
-import blackjack.domain.PlayerProfit
 import blackjack.domain.Result
 
 object OutputView {
@@ -29,11 +27,9 @@ object OutputView {
 
     fun finalProfit(result: Result) {
         println("## 최종 수익")
-        dealerProfit(result.dealerProfit)
-        playersProfit(result.playerProfits)
+        println("${result.dealerProfit.name} : ${result.dealerProfit.profit}")
+        result.playerProfits.forEach {
+            println("${it.name} : ${it.profit}")
+        }
     }
-
-    private fun playersProfit(playerProfits: List<PlayerProfit>) = playerProfits.forEach { println("${it.name} : ${it.profit}") }
-
-    private fun dealerProfit(dealerProfit: DealerProfit) = println("딜러 : ${dealerProfit.profit}")
 }

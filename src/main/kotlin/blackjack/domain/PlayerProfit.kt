@@ -1,6 +1,6 @@
 package blackjack.domain
 
 class PlayerProfit(
-    val name: String,
-    val profit: Double,
-)
+    override val name: String,
+    override val profit: Double,
+) : Profit
