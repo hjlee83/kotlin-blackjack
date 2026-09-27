@@ -33,3 +33,18 @@ out/
 
 ### Mac OS ###
 .DS_Store
+
+# Security: local secrets and credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_rsa.*
+credentials.json
+*.secrets.json
